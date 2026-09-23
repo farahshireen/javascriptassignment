@@ -1,23 +1,24 @@
 // Question 1
-
 function power(a, b) {
     var result = 1;
+    var i = 1;
 
-    for (var i = 1; i <= b; i++) {
+    while (i <= b) {
         result = result * a;
+        i++;
     }
 
     return result;
 }
 
-var a = +prompt("Enter base:");
-var b = +prompt("Enter power:");
+var a = +prompt("Enter value of a:");
+var b = +prompt("Enter value of b:");
 
 document.write("Answer: " + power(a, b));
 
 // Question 2
 
-function leapYear(year) {
+function checkLeapYear(year) {
     if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
         return "Leap Year";
     } else {
@@ -27,16 +28,16 @@ function leapYear(year) {
 
 var year = +prompt("Enter a year:");
 
-document.write(leapYear(year));
+document.write(checkLeapYear(year));
 
 // Question 3
-
 function calculateS(a, b, c) {
     return (a + b + c) / 2;
 }
 
 function calculateArea(a, b, c) {
     var S = calculateS(a, b, c);
+
     var area = Math.sqrt(S * (S - a) * (S - b) * (S - c));
 
     return area;
@@ -70,18 +71,21 @@ function mainFunction() {
 mainFunction();
 
 // Question 5 
+function myIndexOf(text, character) {
+    var i = 0;
 
-    function myIndexOf(text, character) {
-    for (var i = 0; i < text.length; i++) {
+    while (i < text.length) {
         if (text[i] === character) {
             return i;
         }
+
+        i++;
     }
 
     return -1;
 }
 
-var text = prompt("Enter a sentence:");
+var text = prompt("Enter a string:");
 var character = prompt("Enter a character:");
 
 document.write("Index: " + myIndexOf(text, character));
@@ -90,8 +94,9 @@ document.write("Index: " + myIndexOf(text, character));
 
 function removeVowels(sentence) {
     var result = "";
+    var i = 0;
 
-    for (var i = 0; i < sentence.length; i++) {
+    while (i < sentence.length) {
         if (
             sentence[i] !== "a" &&
             sentence[i] !== "e" &&
@@ -104,8 +109,10 @@ function removeVowels(sentence) {
             sentence[i] !== "O" &&
             sentence[i] !== "U"
         ) {
-            result += sentence[i];
+            result = result + sentence[i];
         }
+
+        i++;
     }
 
     return result;
@@ -113,14 +120,15 @@ function removeVowels(sentence) {
 
 var sentence = prompt("Enter a sentence:");
 
-document.write("Without vowels: " + removeVowels(sentence));
+document.write("Sentence without vowels: " + removeVowels(sentence));
 
 // Question 7
 
 function countVowels(text) {
     var count = 0;
+    var i = 0;
 
-    for (var i = 0; i < text.length - 1; i++) {
+    while (i < text.length - 1) {
         var pair = text[i].toLowerCase() + text[i + 1].toLowerCase();
 
         switch (pair) {
@@ -147,6 +155,8 @@ function countVowels(text) {
                 count++;
                 break;
         }
+
+        i++;
     }
 
     return count;
@@ -157,32 +167,33 @@ var text = prompt("Enter a line of text:");
 document.write("Occurrences: " + countVowels(text));
 
 // Question 8
-function meters(km) {
+function convertToMeters(km) {
     return km * 1000;
 }
 
-function feet(km) {
+function convertToFeet(km) {
     return km * 3280.84;
 }
 
-function inches(km) {
+function convertToInches(km) {
     return km * 39370.1;
 }
 
-function centimeters(km) {
+function convertToCentimeters(km) {
     return km * 100000;
 }
 
-var km = +prompt("Enter distance in kilometers:");
+var distance = +prompt("Enter distance in kilometers:");
 
-document.write("Meters: " + meters(km) + "<br>");
-document.write("Feet: " + feet(km) + "<br>");
-document.write("Inches: " + inches(km) + "<br>");
-document.write("Centimeters: " + centimeters(km));
+document.write("Meters: " + convertToMeters(distance) + "<br>");
+document.write("Feet: " + convertToFeet(distance) + "<br>");
+document.write("Inches: " + convertToInches(distance) + "<br>");
+document.write("Centimeters: " + convertToCentimeters(distance));
 // Question 9 
-function overtimePay(hours) {
+function calculateOvertime(hours) {
     if (hours > 40) {
-        return (hours - 40) * 12;
+        var overtimeHours = hours - 40;
+        return overtimeHours * 12;
     } else {
         return 0;
     }
@@ -190,20 +201,24 @@ function overtimePay(hours) {
 
 var hours = +prompt("Enter hours worked:");
 
-document.write("Overtime Pay: Rs. " + overtimePay(hours));
+document.write("Overtime Pay: Rs. " + calculateOvertime(hours));
 // Question 10 
+function calculateNotes(amount) {
+    var notes100 = Math.floor(amount / 100);
+    amount = amount % 100;
+
+    var notes50 = Math.floor(amount / 50);
+    amount = amount % 50;
+
+    var notes10 = Math.floor(amount / 10);
+
+    document.write("100 notes: " + notes100 + "<br>");
+    document.write("50 notes: " + notes50 + "<br>");
+    document.write("10 notes: " + notes10);
+}
+
 var amount = +prompt("Enter amount in hundreds:");
 
 amount = amount * 100;
 
-var notes100 = Math.floor(amount / 100);
-amount = amount % 100;
-
-var notes50 = Math.floor(amount / 50);
-amount = amount % 50;
-
-var notes10 = Math.floor(amount / 10);
-
-document.write("100 notes: " + notes100 + "<br>");
-document.write("50 notes: " + notes50 + "<br>");
-document.write("10 notes: " + notes10);
+calculateNotes(amount);
